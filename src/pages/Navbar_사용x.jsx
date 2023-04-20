@@ -1,4 +1,8 @@
+/* Header 파일으로 대체 사용 */
+
 import React from "react";
+import { Link } from "react-router-dom";
+
 const Nav = () => {
 
     return(
@@ -9,9 +13,9 @@ const Nav = () => {
         </div>
 
         <ul class="nav_menu">
-            <li id="basic_menu">스터디</li>
-            <li id="basic_menu">스토리</li>
-            <li id="lounge_menu">라운지
+            <li id="basic_menu"><Link to='/Study'>스터디</Link></li>
+            <li id="basic_menu"><Link to='/Story'>스토리</Link></li>
+            <li id="lounge_menu"><Link to='/Lounge'></Link>라운지
 
                 <ul class="sub_lounge">
                     <li id="sub_menu">자유 게시판</li>
