@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; //브라우저라우터를 라우터로 이름 변경
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; //브라우저라우터를 라우터로 이름 변경
 import Home from './pages/Home';
+import GlobalStyle from "../src/styles/StyledComponent"
 
 
-import StudyCreate from './pages/Study/Main/StudyCreate';
 import StudyList from './pages/Study/Main/StudyList';
 import StudyMain from './pages/Study/Main/StudyMain';
 
@@ -26,48 +25,49 @@ import SearchAll from './pages/Lounge/SearchAll';
 import Mypage from './pages/User/Mypage';
 import SignIn from './pages/User/SignIn';
 import SignUp from './pages/User/SignUp';
-import FindMember from './pages/User/FindMember';
-import MemberDelete from './pages/User/MemberDelete';
-import MyPost from './pages/User/MyPost';
 
+import MemberDelete from './pages/User/MemberDelete'
+import StudyWrite from './pages/Study/Main/StudyCreate';
+import ContextProvider from './context/LoginContext';
 function App() {
-  return (
-    <>
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
+    return (
+        <>
+            <GlobalStyle/>
+            <Router>
+                <Routes>
+                    <Route path='/' element={<Home/>}/>
 
 
-        <Route path='/Study' element={<StudyMain/>}/>
-        <Route path='/Study/Create' element={<StudyCreate/>}/>
-        <Route path='/Study/List' element={<StudyList/>}/>
+                    <Route path='/Study' element={<StudyMain/>}/>
+                    <Route path='/Study/List' element={<StudyList/>}/>
 
-        <Route path='/Study/StudyRoom' element={<StudyRoomMain/>}/>
-        <Route path='/Study/StudyRoom/StudyRoomSchedule' element={<StudyRoomSchedule/>}/>
-        <Route path='/Study/StudyRoom/StudyRoomBoard' element={<StudyRoomBoard/>}/>
-        <Route path='/Study/StudyRoom/StudyRoomMember' element={<StudyRoomMember/>}/>
+                    <Route path='/Study/StudyRoom' element={<StudyRoomMain/>}/>
+                    <Route path='/Study/StudyRoom/StudyRoomSchedule' element={<StudyRoomSchedule/>}/>
+                    <Route path='/Study/StudyRoom/StudyRoomBoard' element={<StudyRoomBoard/>}/>
+                    <Route path='/Study/StudyRoom/StudyRoomMember' element={<StudyRoomMember/>}/>
 
 
-        <Route path='/Story' element={<StoryMain/>}/>
-        <Route path='/Story/Post' element={<StoryPost/>}/>
-        <Route path='/Story/Write' element={<StoryWrite/>}/>
+                    <Route path='/Story' element={<StoryMain/>}/>
+                    <Route path='/Story/Post' element={<StoryPost/>}/>
+                    <Route path='/Story/Write' element={<StoryWrite/>}/>
 
-        <Route path='/Lounge' element={<LoungeFreeMain/>}/>
-        <Route path='/Lounge/QnA' element={<LoungeQnA/>}/>
-        <Route path='/Lounge/Post' element={<LoungePost/>}/>
-        <Route path='/Lounge/Write' element={<LoungeWrite/>}/>
-        <Route path='/Lounge/SearchAll' element={<SearchAll/>}/>
+                    <Route path='/Lounge/Free' element={<LoungeFreeMain/>}/>
+                    <Route path='/Lounge/QnA' element={<LoungeQnA/>}/>
+                    <Route path='/Lounge/Post' element={<LoungePost/>}/>
+                    <Route path='/Lounge/Write' element={<LoungeWrite/>}/>
+                    <Route path='/Lounge/SearchAll' element={<SearchAll/>}/>
 
-        <Route path='/Mypage' element={<Mypage/>}/>
-        <Route path='/SignIn' element={<SignIn/>}/>
-        <Route path='/SignUp' element={<SignUp/>}/>
-        <Route path='/SignIn/FindMember' element={<FindMember/>}/>
-        <Route path='/Mypage/MemberDelete' element={<MemberDelete/>}/>
-        <Route path='/Mypage/MyPost' element={<MyPost/>}/>
-        </Routes>
-    </Router>
-    </>
-  );
+                    <Route path='/Mypage' element={<Mypage/>}/>
+                    <Route path='/Signln' element={<SignIn/>}/>
+                    <Route path='/SignUp' element={<SignUp/>}/>
+                    <Route path='/Mypage/MemberDelete' element={<MemberDelete/>}/>
+                    <Route path='/Mypage/MyPost' element={<Mypage/>}/>
+                    <Route path='/Study/Create' element={<StudyWrite></StudyWrite>}/>
+                </Routes>
+            </Router>
+
+        </>
+    );
 };
 
 export default App;

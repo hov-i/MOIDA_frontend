@@ -1,89 +1,241 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import logo from '../Images/LOGO.png';
 import searchIcon from '../Images/search.png';
+import {Button} from '../styles/StyledComponent';
+import {useState} from 'react';
+import LogOut from '../Images/logout.png'
+import MyPerson from '../Images/user.png'
 
-const HeaderContainer = styled.div`
-  width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-  border-bottom: 2px solid gray;
+
+const Container = styled.div`
+  padding-top: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  background-color: white;
+  border-bottom: 1.5px solid gray;
+
+  .HeaderContainer, .HeaderLeft, .Nav, .HeaderRight {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .HeaderContainer {
+    width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+
+  .HeaderLeft {
+    padding-top: 18px;
+  }
+
+  .Nav {
+    height: 30px;
+    padding: 5px; // 여기서 스터디, 스토리, 라운지 세로위치를 조정합니다.
+  }
+
+  // 헤더 오른쪽 : 검색바, 로그인버튼, 마이페이지, 로그아웃 기능
+  .HeaderRight {
+    min-width: 430px;
+    justify-content: space-between;
+    padding-top: 18px;
+  }
+  .LoginArea {
+    width: 100px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
 `;
-const LogoNavContainer = styled.div`
+const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  padding-top: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 280px;
+  height: 36px;
+  background-color: rgb(239, 239, 239);
+  z-index: 10;
+  padding: 0 10px 0 10px;
+
+  img {
+    height: 20px;
+    width: 20px;
+    opacity: 40%;
+  }
+
+  input {
+    width: 100%;
+    height: 36px;
+    padding: 5px 5px 5px 5px;
+    font-size: 1.1rem;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: rgb(239, 239, 239);
+    z-index: 20;
+    border: none;
+    outline: none;
+  }
 `;
+
+
+// 로고를 헤더에서만 쓴다면 여기있어도 되고
+// 다른곳에서도 사용한다면 Common 폴더에 컴포넌트로 만들어줍니다.
 const Logo = styled.img`
-  height: 40px;
-  width: 170px;
+  width: 160px;
   margin: 0 20px 0 20px;
 `;
-const NavContainer = styled.div`
-  display: flex;
-  height: 30px;
-  align-items: center;
-  padding-top: 5px;  // 여기서 스터디, 스토리, 라운지 세로위치를 조정합니다.
-`;
-const Nav = styled(NavLink)`
+
+// navDefault와 navSelect차이는 색상뿐입니다. 간단하게 고쳐쓰겠습니다.
+const CustomNavLink = styled(NavLink)`
   color: black;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: bold;
   text-decoration: none;
-  margin: 22px;  // 여기서 네비게이션 메뉴 사이의 간격을 조정합니다
-  
+  margin: 22px;
+
+  &.active { // 활성화되었을떄 색상을 바꿔줍니다. 크기도 바꿀까요? 이건 뭐 알아서
+    color: var(--maincolor);
+    font-size: 2rem;
+  }
 `;
+
 
 //  로그인 버튼 추가해야함 로그인담당하는 컨테이너 만들어야 해
 
 
-const SearchContainer = styled.div`
-  display: flex;
-  border-radius: 5px;
-  align-items: center;
-  overflow: hidden;
-  width: 255px;
+const LoginButton = styled(Button)`
+  background-color: var(--maincolor);
+  width: 70px;
   height: 36px;
-  background-color: rgb(239,239,239);
-  
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+
 `;
 
-const SearchIcon = styled.img`
-  height: 20px;
-  width: 20px;
-  opacity: 40%;
-`;
 
-const SearchBar = styled.input`
-  padding: 5px;
-  width: 210px;
-  border: 0;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  background-color: rgb(239,239,239);
-  outline: none;
-`;
+
+const IsLogin = () => {
+    const [isLogin, setIsLogin] = useState(false);
+
+    const MypageImage = styled.div`
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #E2fff9;
+      margin: 10px;
+    `;
+    const MypageProfile = styled.ul`
+      font-size: 1.5rem;
+      font-weight: bolder;
+      background-color: white;
+      cursor: pointer;
+      position: relative;
+      padding: 0 15px 0 0;
+    `;
+    const MyDiv = styled.div`
+      background-color: white;
+      position: absolute;
+      top: 30px;
+      right: 1px;
+      text-decoration-line: none;
+      width: 120px;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    `;
+    const DropDown = styled.li`
+      font-size: 1.3rem;
+      text-decoration: none;
+      list-style: none;
+      top: 30px;
+      margin: 10px;
+      text-decoration-line: none;
+      color: #9b9b9b;
+
+    `;
+    const linkStyle = {
+        textDecoration: 'none',
+        color: 'black'
+    };
+
+    const MyImg = styled.img`
+      width: 15px;
+      margin-right: 20px;
+      text-align: left;
+
+    `;
+    const LoginButton = styled(Button)`
+      background-color: var(--maincolor);
+      width: 70px;
+      height: 36px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 4px;
+
+    `;
+
+
+    // isLogin 상태만 가지고 로그인버튼 표시할지 마이페이지 표시할지 정하면 되지 않을까?
+    const [view, setView] = useState(false);
+
+    return (
+            <>
+                <MypageImage/>
+                <MypageProfile onClick={() => { setView(!view)
+                    }}>윤홍비 님{" "}
+                        {view && (
+                            <MyDiv>
+                                <DropDown><Link to="/Mypage" style={linkStyle}><MyImg
+                                    src={MyPerson}/>마이페이지</Link></DropDown>
+                                <DropDown><Link to="/Logout" style={linkStyle}><MyImg src={LogOut}/>로그아웃</Link></DropDown>
+                            </MyDiv>
+                        )}
+                </MypageProfile>
+            </>
+    )
+}
 
 const Header = () => {
+    const [isLogin, setIsLogin] = useState(false);
     return (
-
-        <HeaderContainer>
-            <LogoNavContainer>
-                <Logo src={logo} alt="로고" />
-                <NavContainer>
-                    <Nav to="/study">스터디</Nav>
-                    <Nav to="/story">스토리</Nav>
-                    <Nav to="/lounge">라운지</Nav>
-                </NavContainer>
-            </LogoNavContainer>
-            <SearchContainer>
-                <SearchBar type="text" placeholder="어떤 스터디를 찾고 싶으신가요?" />
-                <SearchIcon src={searchIcon} alt="검색 아이콘" />
-            </SearchContainer>
-        </HeaderContainer>
+        <Container>
+            <div className='HeaderContainer'>
+                <div className='HeaderLeft'>
+                    <NavLink to="/"><Logo src={logo} alt="로고"/></NavLink>
+                    <div className='Nav'>
+                        <CustomNavLink to="/study">스터디</CustomNavLink>
+                        <CustomNavLink to="/story">스토리</CustomNavLink>
+                        <CustomNavLink to="/lounge/free">라운지</CustomNavLink>
+                    </div>
+                </div>
+                <div className='HeaderRight'>
+                    <SearchBar>
+                        <input className='searchInput' type="text" placeholder="검색하고 싶은 키워드를 입력해보세요!"/>
+                        <img src={searchIcon} alt="검색 아이콘"/>
+                    </SearchBar>
+                    <div className='LoginArea' style={isLogin ? {width: '135px'} : {width: '130px'}}>
+                        {isLogin ? <IsLogin></IsLogin> :
+                        <LoginButton onClick={() => setIsLogin(true)}>로그인</LoginButton>}
+                    </div>
+                </div>
+            </div>
+        </Container>
     );
 };
 export default Header;
