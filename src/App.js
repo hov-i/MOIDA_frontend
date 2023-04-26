@@ -22,7 +22,7 @@ import LoungePost from './pages/Lounge/LoungePost';
 import LoungeWrite from './pages/Lounge/LoungeWrite';
 import SearchAll from './pages/Lounge/SearchAll';
 
-import Mypage from './pages/User/Mypage';
+import MyPage from './pages/User/MyPage';
 import SignIn from './pages/User/SignIn';
 import SignUp from './pages/User/SignUp';
 
@@ -57,11 +57,11 @@ function App() {
                     <Route path='/Lounge/Write' element={<LoungeWrite/>}/>
                     <Route path='/Lounge/SearchAll' element={<SearchAll/>}/>
 
-                    <Route path='/Mypage' element={<Mypage/>}/>
+                    <Route path='/Mypage' element={<MyPage/>}/>
                     <Route path='/Signln' element={<SignIn/>}/>
                     <Route path='/SignUp' element={<SignUp/>}/>
                     <Route path='/Mypage/MemberDelete' element={<MemberDelete/>}/>
-                    <Route path='/Mypage/MyPost' element={<Mypage/>}/>
+                    <Route path='/Mypage/MyPost' element={<MyPage/>}/>
                     <Route path='/Study/Create' element={<StudyWrite></StudyWrite>}/>
                 </Routes>
             </Router>
